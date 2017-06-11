@@ -13,8 +13,14 @@ module Decker
     end
 
     # An English representation of the card.
-    def to_s
-      "#{RANKS[@rank]} of #{SUITS[@suit]}"
+    # @example The ten of clubs
+    #   Decker::Card.new('TC').to_s #=> "Ten of Clubs"
+    def to_s(pretty: false)
+      if pretty
+        "#{@rank}#{PRETTY_SUITS[@suit]}"
+      else
+        "#{RANKS[@rank]} of #{SUITS[@suit]}"
+      end
     end
 
     # A Hand is essentially just a Set of Cards; in order to get proper
@@ -34,7 +40,7 @@ module Decker
     end
 
     def inspect
-      "#<#{self.class}:#{to_s}>"
+      "#<#{self.class}:#{to_s(pretty: true)}>"
     end
   end
 end

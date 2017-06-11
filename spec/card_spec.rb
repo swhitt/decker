@@ -38,10 +38,20 @@ RSpec.describe Decker::Card do
   end
 
   describe '#to_s' do
-    it 'returns the correct English representation of the card' do
-      expect(ace_of_spades.to_s).to eq('Ace of Spades')
-      expect(king_of_clubs.to_s).to eq('King of Clubs')
-      expect(two_of_diamonds.to_s).to eq('Two of Diamonds')
+    context 'with no options' do
+      it 'returns the correct English representation of the card' do
+        expect(ace_of_spades.to_s).to eq('Ace of Spades')
+        expect(king_of_clubs.to_s).to eq('King of Clubs')
+        expect(two_of_diamonds.to_s).to eq('Two of Diamonds')
+      end
+    end
+
+    context 'with the pretty option turned' do
+      it 'returns the pretty version of the card' do
+        expect(ace_of_spades.to_s(pretty: true)).to eq('A♠')
+        expect(king_of_clubs.to_s(pretty: true)).to eq('K♣')
+        expect(two_of_diamonds.to_s(pretty: true)).to eq('2♦')
+      end
     end
   end
 end
