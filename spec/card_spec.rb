@@ -55,4 +55,23 @@ RSpec.describe Decker::Card do
       end
     end
   end
+
+  describe '#<=>' do
+    it 'returns 1 if the other card has a lower rank' do
+      expect(ace_of_spades <=> king_of_clubs).to equal(1)
+      expect(five_of_hearts <=> two_of_diamonds).to equal(1)
+    end
+
+    it 'returns 0 if the other card has the same rank' do
+      expect(ace_of_spades <=> ace_of_clubs).to equal(0)
+    end
+
+    it 'returns 0 if the other card is the same card' do
+      expect(ace_of_spades <=> ace_of_spades).to equal(0)
+    end
+
+    it 'returns -1 if the other card has a higher rank' do
+      expect(two_of_diamonds <=> five_of_hearts).to equal(-1)
+    end
+  end
 end

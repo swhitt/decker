@@ -29,6 +29,17 @@ module Decker
       end
     end
 
+    # The index of this Card's rank - effectively the value of this card compared to others
+    def rank_index
+      RANKS.keys.index(@rank)
+    end
+
+    # Rank the cards in the order defined by Project Euler. This will
+    # facilitate sorting and finding straights.
+    def <=>(other)
+      rank_index <=> other.rank_index
+    end
+
     # A Hand is essentially just a Set of Cards; in order to get proper
     # behavior with a Set (which uses a Hash in its implementation)
     # we have to make sure Card has #eql? and #hash defined properly
