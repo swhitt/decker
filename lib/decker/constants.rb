@@ -21,4 +21,9 @@ module Decker
     H: 'Hearts',
     S: 'Spades'
   }.freeze
+
+  PRETTY_SUITS = Hash[SUITS.keys.zip(%w[♣ ♦ ♥ ♠])].freeze
+
+  EXTRACT_RANK_AND_SUIT_REGEXP =
+    /\A(?<rank>[#{RANKS.keys.join}])(?<suit>[#{SUITS.keys.join}])\Z/
 end
