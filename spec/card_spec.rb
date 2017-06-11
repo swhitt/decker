@@ -4,7 +4,8 @@ RSpec.describe Decker::Card do
   let(:ace_of_spades)   { Decker::Card.new 'AS' }
   let(:king_of_clubs)   { Decker::Card.new 'KC' }
   let(:two_of_diamonds) { Decker::Card.new '2D' }
-
+  let(:ace_of_clubs)    { Decker::Card.new 'AC' }
+  let(:five_of_hearts)  { Decker::Card.new '5H' }
   describe '#initialize' do
     it 'raises an ArgumentError with invalid notation' do
       expect { Decker::Card.new 'foo!' }.to raise_error(ArgumentError)
@@ -46,7 +47,7 @@ RSpec.describe Decker::Card do
       end
     end
 
-    context 'with the pretty option turned' do
+    context 'with the pretty option enabled' do
       it 'returns the pretty version of the card' do
         expect(ace_of_spades.to_s(pretty: true)).to eq('A♠')
         expect(king_of_clubs.to_s(pretty: true)).to eq('K♣')
