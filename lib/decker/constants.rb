@@ -24,6 +24,10 @@ module Decker
 
   PRETTY_SUITS = Hash[SUITS.keys.zip(%w[♣ ♦ ♥ ♠])].freeze
 
+  ONE_CARD_REGEXP = /[#{RANKS.keys.join}][#{SUITS.keys.join}]/
+
+  HAND_REGEXP = /\A(#{ONE_CARD_REGEXP}\s?)+\Z/
+
   EXTRACT_RANK_AND_SUIT_REGEXP =
     /\A(?<rank>[#{RANKS.keys.join}])(?<suit>[#{SUITS.keys.join}])\Z/
 end
