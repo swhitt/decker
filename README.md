@@ -1,5 +1,7 @@
 # Decker
 
+[![Build Status](https://travis-ci.com/swhitt/decker.svg?token=oBuQt75zb6VRV1KYNpsh&branch=develop)](https://travis-ci.com/swhitt/decker)
+
 Decker is a representation of a [Standard 52-card deck](https://en.wikipedia.org/wiki/Standard_52-card_deck) with a simple parser and hand evaluator for [Project Euler's](https://projecteuler.net) [Problem 54](https://projecteuler.net/problem=54).
 
 To experiment with the code, run `bin/console` for an interactive prompt.
