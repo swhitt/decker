@@ -12,7 +12,7 @@ To experiment with the code, run `bin/console` for an interactive prompt.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'decker'
+gem 'decker', github: 'swhitt/decker' # for now, not published on rubygems.org
 ```
 
 And then execute:
@@ -54,7 +54,7 @@ $ bundle exec decker
 ```
 This will automatically grab `poker.txt` from the Project Euler website, parse the card notation, score
 the hands and output the result score.
-```
+
 
 ## Development
 
