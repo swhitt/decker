@@ -1,6 +1,7 @@
 
 module Decker
   class Hand
+    include HandClassifier
     include Enumerable
     extend Forwardable
     def_delegators :@cards, :size, :each
@@ -29,14 +30,6 @@ module Decker
 
       new_cards = notation.scan(ONE_CARD_REGEXP).map { |card| Card.new(card) }
       self << new_cards
-    end
-
-    def frequency_by_suit
-      each_with_object(Hash.new(0)) { |card, acc| acc[card.suit] += 1 }
-    end
-
-    def frequency_by_rank
-      each_with_object(Hash.new(0)) { |card, acc| acc[card.rank] += 1 }
     end
 
     def to_s
