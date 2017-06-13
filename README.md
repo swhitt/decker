@@ -1,6 +1,6 @@
 # Decker
 
-[![Build Status](https://travis-ci.com/swhitt/decker.svg?token=oBuQt75zb6VRV1KYNpsh&branch=develop)](https://travis-ci.com/swhitt/decker)
+[![Build Status](https://travis-ci.org/swhitt/decker.svg?branch=develop)](https://travis-ci.org/swhitt/decker)
 
 Decker is a representation of a [Standard 52-card deck](https://en.wikipedia.org/wiki/Standard_52-card_deck) with a simple parser and hand evaluator for [Project Euler's](https://projecteuler.net) [Problem 54](https://projecteuler.net/problem=54).
 
@@ -50,7 +50,7 @@ hand <=> hand2
 You can run the code against a Project Euler [`poker.txt`](https://projecteuler.net/project/resources/p054_poker.txt)-style input using the command line tool provided:
 
 ```
-$ decker 
+$ bundle exec decker 
 ```
 This will automatically grab `poker.txt` from the Project Euler website, parse the card notation, score
 the hands and output the result score.
