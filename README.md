@@ -50,13 +50,10 @@ hand <=> hand2
 You can run the code against a Project Euler [`poker.txt`](https://projecteuler.net/project/resources/p054_poker.txt)-style input using the command line tool provided:
 
 ```
-$ decker poker.txt
+$ decker 
 ```
-
-Or by supplying the url of the text input file directly as a command-line option:
-
-```
-$ decker https://projecteuler.net/project/resources/p054_poker.txt
+This will automatically grab `poker.txt` from the Project Euler website, parse the card notation, score
+the hands and output the result score.
 ```
 
 ## Development
