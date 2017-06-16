@@ -32,7 +32,6 @@ RSpec.describe Decker::HandClassifier do
     subject { high_card_ace }
     it { is_expected.to be_high_card }
   end
-  
 
   describe '#<=>' do
     it 'returns 1 when the first hand is better than the second' do

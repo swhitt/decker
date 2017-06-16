@@ -3,4 +3,3 @@
 require 'decker/cli'
 
 Decker::CLI.start
-

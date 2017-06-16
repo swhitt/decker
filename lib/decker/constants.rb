@@ -1,6 +1,6 @@
 module Decker
   # The rank of a Card is the number or face value it has. This
-  # maps the Symbol representation of rank to its English 
+  # maps the Symbol representation of rank to its English
   # representation.
   RANKS = {
     '2': 'Two',
@@ -40,7 +40,7 @@ module Decker
   # an entire hand.
   HAND_REGEXP = /\A(#{ONE_CARD_REGEXP}\s?)+\Z/
 
-  # the named capture groups in this regexp will allow us to 
+  # the named capture groups in this regexp will allow us to
   # grab the rank and suit of the desired card quickly without
   # messing with MatchData indices
   EXTRACT_RANK_AND_SUIT_REGEXP =

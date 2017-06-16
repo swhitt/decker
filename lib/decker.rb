@@ -6,7 +6,7 @@ require 'decker/hand'
 require 'open-uri'
 
 # Decker will parse poker hand notation and score the resultant hands
-# for you. The notation for each hands should be in the format 
+# for you. The notation for each hands should be in the format
 # `"7C 5H KC QH JD AS KH 4C AD 4S"`, where the first 5 pairs represent
 # the first player's hand and the second 5 pairs represent the second
 # player's hand.
