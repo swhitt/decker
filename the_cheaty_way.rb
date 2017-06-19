@@ -3,7 +3,8 @@ require 'ruby-poker'
 
 # This is the way I'd probably do it in the real world (with some test coverage
 # of course) but it kind of defeats the point of the exercise, eh? :)
-# Requires the ruby gem `ruby-poker`, you can get it with `gem install ruby-poker`/
+# Requires the ruby gem `ruby-poker`, you can get it with
+# `gem install ruby-poker`
 
 scores = { player1: 0, player2: 0, tie: 0 }
 

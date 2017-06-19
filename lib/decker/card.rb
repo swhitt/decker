@@ -6,12 +6,15 @@ module Decker
     attr_reader :rank, :suit
 
     # Create a new Card object of a given rank and suit
-    # @param notation [String] a two-character representation denoting the card rank/suit
+    # @param notation [String] a two-character representation denoting the card
+    #   rank/suit
     # @example A Card representing the King of Diamonds
     #   Decker::Card.new 'KD'
     def initialize(notation)
-      unless parsed_notation = EXTRACT_RANK_AND_SUIT_REGEXP.match(notation)
-        raise ArgumentError, "The string #{notation.inspect} is invalid Card notation"
+      parsed_notation = EXTRACT_RANK_AND_SUIT_REGEXP.match(notation)
+      unless parsed_notation
+        raise ArgumentError,
+              "The string #{notation.inspect} is invalid Card notation"
       end
 
       @rank = parsed_notation[:rank].to_sym
@@ -29,7 +32,8 @@ module Decker
       end
     end
 
-    # The index of this Card's rank - effectively the value of this card compared to others
+    # The index of this Card's rank - effectively the value of this card
+    # compared to others
     def rank_index
       RANKS.keys.index(@rank)
     end

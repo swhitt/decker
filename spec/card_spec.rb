@@ -67,7 +67,9 @@ RSpec.describe Decker::Card do
     end
 
     it 'returns 0 if the other card is the same card' do
+      # rubocop:disable Lint/UselessComparison
       expect(ace_of_spades <=> ace_of_spades).to equal(0)
+      # rubocop:enable Lint/UselessComparison
     end
 
     it 'returns -1 if the other card has a higher rank' do

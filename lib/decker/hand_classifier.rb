@@ -26,8 +26,7 @@ module Decker
     TIE_BREAKERS = {
             high_card: ->(hand) { [hand.max.rank_index] },
              one_pair: lambda do |hand|
-                         hand.scores_of_ranks_with_freq(2) +
-                           hand.scores_of_kickers
+                         hand.scores_of_ranks_with_freq(2) + hand.kicker_scores
                        end,
              two_pair: ->(hand) { hand.scores_of_ranks_with_freq(2) },
       three_of_a_kind: ->(hand) { hand.scores_of_ranks_with_freq(3) },
@@ -46,16 +45,33 @@ module Decker
     #     * :tie_breakers [Array<Integer>] the tie breaker scores for this
     #       classification.
     def classify
-      # TODO: stop throwing RuntimeError and make our own.
-      raise 'Cannot only classify with 5 cards.' if size != 5
-      CLASSIFICATIONS.each_with_object([]) do |(name, pred), array|
-        next unless pred.call(self)
-        array << {
-                  name: name,
-           class_score: CLASSIFICATIONS.keys.index(name),
-          tie_breakers: TIE_BREAKERS[name].call(self)
-        }
+      raise_if_invalid_count!
+      classifications = []
+      CLASSIFICATIONS.each do |class_name, predicate|
+        # the predicate is a lambda that is passed a hand
+        # and returns true/false if we fit within `classification_name`.
+        class_applies = predicate.call(self)
+        next unless class_applies
+
+        # we only get here if the class we're checking applies -
+        # now we add it to the result set of classes.
+        classifications << { name: class_name,
+                      class_score: class_score_for(class_name),
+                     tie_breakers: tie_breaker_scores_for(class_name) }
       end
+      classifications
+    end
+
+    def class_score_for(class_name)
+      CLASSIFICATIONS.keys.index(class_name)
+    end
+
+    def tie_breaker_scores_for(class_name)
+      TIE_BREAKERS[class_name].call(self)
+    end
+
+    def raise_if_invalid_count!
+      raise IncorrectHandSizeError if size != 5
     end
 
     # @return [Boolean] Returns whether this Hand is a Full House
@@ -146,16 +162,18 @@ module Decker
     # descending order; this can be merged onto the end of the ties arrays and
     # used as a final tiebreaker.
     # @return
-    def scores_of_kickers
+    def kicker_scores
       kicker_ranks = frequency_by_rank.select { |_r, f| f == 1 }.keys
       kicker_ranks.map { |r| Decker::RANKS.keys.index(r) }.sort.reverse
     end
 
     # Compare two Hands.
-    # The actual meat of the hand classifier, where we compare hands. We take the classifications
-    # of both this card and the other one and compare their class scores. If there are any ties
-    # then we compare the ties scores for that classification type.
-    # @return [Integer] 1 if this hand has a higher value than the other, -1 if the other hand has a higher
+    # The actual meat of the hand classifier, where we compare hands. We take
+    # the classifications of both this card and the other one and compare their
+    #  class scores. If there are any ties then we compare the ties scores for
+    # that classification type.
+    # @return [Integer] 1 if this hand has a higher value than the other, -1 if
+    #   the other hand has a higher
     def <=>(other)
       our_type = classify.last
       other_type = other.classify.last

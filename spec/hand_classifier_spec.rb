@@ -39,7 +39,9 @@ RSpec.describe Decker::HandClassifier do
     end
 
     it 'returns 0 when the first hand is the same as the second' do
+      # rubocop:disable Lint/UselessComparison
       expect(royal_flush <=> royal_flush).to eql(0)
+      # rubocop:enable Lint/UselessComparison
     end
 
     it 'returns -1 when the first hand is worse than the second' do

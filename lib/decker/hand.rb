@@ -1,5 +1,6 @@
 
 module Decker
+  # A representation of a Hand of cards.
   class Hand
     include HandClassifier
     include Enumerable

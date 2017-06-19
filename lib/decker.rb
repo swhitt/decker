@@ -1,4 +1,5 @@
 require 'decker/version'
+require 'decker/decker_error'
 require 'decker/constants'
 require 'decker/card'
 require 'decker/hand_classifier'
@@ -31,12 +32,9 @@ module Decker
     array.each do |notation|
       hand1, hand2 = load_two_hands(notation)
       case hand1 <=> hand2
-      when 1
-        scores[:player1] += 1
-      when 0
-        scores[:tie] += 1
-      when -1
-        scores[:player2] += 1
+      when 1 then scores[:player1] += 1
+      when 0 then scores[:tie] += 1
+      when -1 then scores[:player2] += 1
       end
     end
     scores
